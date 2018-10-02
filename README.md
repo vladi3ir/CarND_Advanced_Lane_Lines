@@ -132,7 +132,4 @@ Following the strategies covered in Lessons 5, 6 and 7 I was able to successfull
 
 I initially had some trouble fitting the polynomial as the adjacent vehicle was detected and had a higher contrast than the adjacent lane lines. To avoid the problem of detecting objects outside of the driving lane I focused only on pixel range from 400 to 600, excluding the adjacent vehicle. 
 
-
-
-where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-The pipeline works well on flat roads, but will likely need additional processing for roads with hills and higher contrasting shadows.
+The pipeline works well on flat roads, but will likely need additional processing for roads with hills and higher contrasting shadows. If we were going to pursue this project further, there would have to be another type of data set that can provide measurements of the distance between the vehicle and the environment. Image data alone cant tell the difference between a sharp turn and a slight turn with a hill. 
