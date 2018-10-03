@@ -8,13 +8,7 @@
 The goals / steps of this project are the following:
 
 * Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
-[[  1.15777818e+03   0.00000000e+00   6.67113857e+02]
- [  0.00000000e+00   1.15282217e+03   3.86124583e+02]
- [  0.00000000e+00   0.00000000e+00   1.00000000e+00]] 
- [[-0.24688507 -0.02373154 -0.00109831  0.00035107 -0.00259869]]
- 
 * Apply a distortion correction to raw images.
-
 * Use color transforms, gradients, etc., to create a thresholded binary image.
 * Apply a perspective transform to rectify binary image ("birds-eye view").
 * Detect lane pixels and fit to find the lane boundary.
@@ -44,7 +38,7 @@ The goals / steps of this project are the following:
 
 #### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.
 
-The code for this step is contained in the first code cell of the IPython notebook located in "./Camera Calibration.ipynb"  
+The code for this step is contained in the first code cell of the IPython notebook located in "./Calibration.ipynb"  
 
 I start by preparing "object points", which will be the (x, y, z) coordinates of the chessboard corners in the world. Here I am assuming the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time I successfully detect all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
@@ -58,7 +52,16 @@ See Calibrated Test Image.png
 #### 1. Provide an example of a distortion-corrected image.
 
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![alt text][image2]
+Calibrated Test Image.png The most significant change after applying the distortion correction was around the edges of the images, likeley due to the lens of the camera. Using the camera matrix and distortion coefficient from the calibrate camera function, I applied the cv2.undistort function on the image to eliminate the image distortion. 
+
+#Camera matrix
+mtx = [[  1.15777818e+03   0.00000000e+00   6.67113857e+02]
+ [  0.00000000e+00   1.15282217e+03   3.86124583e+02]
+ [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+  
+#Distortion Coefficient
+dist = [[-0.24688507 -0.02373154 -0.00109831  0.00035107 -0.00259869]]
+
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
