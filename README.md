@@ -44,8 +44,8 @@ I start by preparing "object points", which will be the (x, y, z) coordinates of
 
 I then used the output `objpoints` and `imgpoints` to compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function.  I applied this distortion correction to the test image using the `cv2.undistort()` function and obtained this result:
 
-See Calibrated Test Image.png
- 
+[im01]: ./output_images/Calibration Images.png 
+
 
 ### Pipeline (single images)
 
@@ -54,6 +54,8 @@ See Calibrated Test Image.png
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 Calibrated Test Image.png The most significant change after applying the distortion correction was around the edges of the images, likeley due to the lens of the camera. Using the camera matrix and distortion coefficient from the calibrate camera function, I applied the cv2.undistort function on the image to eliminate the image distortion. 
 
+See Calibrated Test Image.png
+ 
 #Camera matrix
 mtx = [[  1.15777818e+03   0.00000000e+00   6.67113857e+02]
  [  0.00000000e+00   1.15282217e+03   3.86124583e+02]
