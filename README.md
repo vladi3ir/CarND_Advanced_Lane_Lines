@@ -66,16 +66,12 @@ dist = [[-0.24688507 -0.02373154 -0.00109831  0.00035107 -0.00259869]]
 
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-
-I first used the sobel edge detection method to come up with a 
-
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
-
-![alt text][image3]
-
+  
+First I applied S channel filter to the undistorted image under the function `undistortAndHLS()`.The S channel filter was used because as mentioned in Lesson 6 the S channel does the best job at picking up the lane lines under very different color and contrast conditions compared to R and H channels. Next I applied Sobel edge detection in the X and Y directions under the function `absSobelThresh()`, then combined the thresholds using the function combineThresholds which can be viewed under 4_S_Sobel.jpg. This provided sufficient thresholding and once I arrived at this result I decided not to use the direction of the gradient.
+ 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
+The perspective transform was applied to the binary thresholded image under the function 'warper()'. The code for my perspective transform includes a function called `warper()`, and is based on the tranformation matrix identified in `Trans_Matrix.ipynb`.  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
  
 
 This resulted in the following source and destination points:
