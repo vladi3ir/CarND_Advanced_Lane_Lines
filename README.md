@@ -78,16 +78,19 @@ This resulted in the following source and destination points:
 
 | Source        | Destination   | 
 |:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
+| 585, 455      | 200, 0        | 
+| 705, 455      | 1080, 0       |
+| 1130, 720     | 1080, 720     |
+| 190, 720      | 200, 720      |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text][image4]  5_Perspective.png 
+
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+
+Using the lessons learned from the Advanced Computer Vision Lesson, lane-line pixels were identified using the transformed binary image and a polynomial was fit to those pixels to estimate the location of the lane lines.  `laneLine()`
 
 Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
 
