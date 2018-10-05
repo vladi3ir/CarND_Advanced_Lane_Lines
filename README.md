@@ -90,21 +90,20 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-Using the lessons learned from the Advanced Computer Vision Lesson, lane-line pixels were identified using the transformed binary image and a polynomial was fit to those pixels to estimate the location of the lane lines.  `laneLine()`
+Using the lessons learned from the Advanced Computer Vision Lesson, lane-line pixels were identified using the transformed binary image and using the sliding window polynomial fit technique was used to estimate the location of the lane lines. The two highest peaks in the histogram were identified as the lane lines then the window was slide upwared to identify the next row of lane lines. After itterating with many scenarios, I found that the number of windows 9, margin 110 and min pix 50 yielded near optimal results. `laneLine()`
 
-Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
+The results of fitting the lane lines with a 2nd order polynomial can be viewed on 6_Lane_lines.Png
 
 ![alt text][image5]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+The radius of curvature was estimated using the function `calculateCurvature`
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
-
-![alt text][image6]
+Example image of the result plotted back down onto the road can be viewed on 7_Green_Lane.png. I implemented this step by warping the image back to the real world space using the inverse perspective matrix in the function `drawLine()`. 
+ 
 
 ---
 
@@ -113,9 +112,7 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
 Here's a [link to my video result](./output_video/project_video.mp4)
-https://view5639f7e7.udacity-student-workspaces.com/tree/CarND-Advanced-Lane-Lines/video_output
-
-
+  
 ---
 
 ### Discussion
@@ -124,6 +121,6 @@ https://view5639f7e7.udacity-student-workspaces.com/tree/CarND-Advanced-Lane-Lin
 
 Following the strategies covered in Lessons 5, 6 and 7 I was able to successfully calibrate the camera, threshold images, transform the image, identify peaks in rows of pixels as lane lines, fit a quadratic to the peak pixels, estimate the curvature of the road based on estimating the curavture of the peak pixels.
 
-I initially had some trouble fitting the polynomial as the adjacent vehicle was detected and had a higher contrast than the adjacent lane lines. To avoid the problem of detecting objects outside of the driving lane I focused only on pixel range from 400 to 600, excluding the adjacent vehicle. 
+The pipeline has breaks with detection incomming dashed lane lines. This issue can be resolved by storing the previous value and using a moving average of the lane location to reduce the sensitivity to new dashed lane lines.
 
-The pipeline works well on flat roads, but will likely need additional processing for roads with hills and higher contrasting shadows. If we were going to pursue this project further, there would have to be another type of data set that can provide measurements of the distance between the vehicle and the environment. Image data alone cant tell the difference between a sharp turn and a slight turn with a hill. 
+The pipeline works well on flat roads, but will likely need additional processing for roads with hills and higher contrasting shadows. If we were going to pursue this project further, there would have to be another sensor that can provide lidar measurement data which provides the true distance between the vehicle and the environment. Image data alone cant tell the difference between a sharp turn and a slight turn with a hill. 
